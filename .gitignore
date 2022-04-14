@@ -1,0 +1,4 @@
+#prettier
+.prettier*
+package*
+node_modules*
