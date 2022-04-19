@@ -20,3 +20,15 @@ function deal(cards = 1) {
     current_player.draw(deck.draw());
   }
 }
+
+function startGame() {
+  //deal deck to players evenly
+  let i = 0;
+  while (!deck.isEmpty()) {
+    current_player = players[i++ % PLAYER_COUNT];
+    deal(1);
+  }
+}
+
+startGame();
+console.log(players);
