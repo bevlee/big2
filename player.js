@@ -6,4 +6,7 @@ export default class Player {
   draw(card) {
     this.hand.push(card);
   }
+  toString() {
+    return this.hand.toString();
+  }
 }

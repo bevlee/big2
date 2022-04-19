@@ -42,6 +42,9 @@ class Card {
     this.suit = suit;
     this.value = value;
   }
+  toString() {
+    return this.suit.toString() + this.value.toString();
+  }
 }
 
 //array of Card objects

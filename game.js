@@ -28,6 +28,11 @@ function startGame() {
     current_player = players[i++ % PLAYER_COUNT];
     deal(1);
   }
+  var player1 = document.getElementById("player1");
+  player1.textContent = players[0].hand;
+
+  var player2 = document.getElementById("player2");
+  player2.textContent = players[1].hand;
 }
 
 startGame();

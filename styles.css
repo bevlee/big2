@@ -1,0 +1,23 @@
+#board {
+    margin: auto;
+    padding: 10vh;
+}
+#player2 {
+    text-align: center;
+    margin: auto;
+    color:green;
+}
+.player {
+    text-align: center;
+}
+#player1 {
+    text-align: center;
+    color: blue;
+    margin: auto;
+}
+
+#center {
+    padding: 10vh;
+    
+    text-align: center;
+}
