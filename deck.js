@@ -28,13 +28,22 @@ export default class Deck {
       this.cards[i] = oldValue;
     }
   }
+
+  draw() {
+    return this.cards.pop();
+  }
+  isEmpty() {
+    return this.cards.length == 0;
+  }
 }
+
 class Card {
   constructor(suit, value) {
     this.suit = suit;
     this.value = value;
   }
 }
+
 //array of Card objects
 function newDeck(cards) {
   return SUITS.flatMap((suit) => {
