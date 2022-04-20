@@ -10,6 +10,7 @@ deck.shuffle();
 console.log(deck.cards);
 var players = [];
 var pile = [];
+
 for (var i = 0; i < PLAYER_COUNT; i++) {
   players.push(new Player());
 }
@@ -28,6 +29,25 @@ function checkPlayValid(card){
 
 function playCard(){
   if (checkPlayValid(card)) pile.push(card);
+}
+
+//process combos
+var comboInstance = false;
+var comboType = "";
+var lastPlayed = [];
+
+function findCombo(cards){
+  lastPlayed = cards;
+  comboInstane = true;
+  if (cards.length == 4 && cards.every(i=>i==cards[0])){
+    return "bomb";
+  }
+  if (cards.length == 3 && cards.every(i=>i==cards[0])){
+    return "triple";
+  }
+  if (cards.length == 2 && cards.every(i=>i==cards[0])){
+    return "double";
+  }
 }
 
 function startGame() {
