@@ -1,7 +1,5 @@
-const SUITS = ["Spade", "Club", "Heart", "Diamond"];
+const SUITS = ["♠", "♣", "♥", "♦"];
 const VALUES = [
-  "1",
-  "2",
   "3",
   "4",
   "5",
@@ -10,9 +8,11 @@ const VALUES = [
   "8",
   "9",
   "10",
-  "11",
-  "12",
-  "13",
+  "J",
+  "Q",
+  "K",
+  "A",
+  "2",
 ];
 
 export default class Deck {
@@ -42,8 +42,21 @@ class Card {
     this.suit = suit;
     this.value = value;
   }
+
   toString() {
-    return this.suit.toString() + this.value.toString();
+    return this.value.toString() + this.suit.toString();
+  }
+
+  get color() {
+    return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
+  }
+
+  getHTML() {
+    const cardDiv = document.createElement("div");
+    cardDiv.innerText = this.suit;
+    cardDiv.classList.add("card", this.color);
+    cardDiv.dataset.value = `${this.value} ${this.suit}`;
+    return cardDiv;
   }
 }
 

@@ -1,23 +1,65 @@
 #board {
     margin: auto;
     padding: 10vh;
+    text-align: center;
 }
 #player2 {
-    text-align: center;
-    margin: auto;
     color:green;
+
 }
 .player {
-    text-align: center;
+    margin: 5vh;
+    
+    columns: 52;
+    display: inline-block;
+    height:20vh;
 }
+
 #player1 {
-    text-align: center;
     color: blue;
-    margin: auto;
+    columns: 52;
+    display: inline-block;
+    
 }
 
 #center {
     padding: 10vh;
-    
-    text-align: center;
 }
+
+.card {
+    width: 4rem;
+    position: relative;
+    border: 1px solid black;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    padding: .5rem;
+  }
+  
+  .card.red {
+    color: red;
+  }
+  
+  .card.black {
+    color: black;
+  }
+  
+  .card::before,
+  .card::after {
+    position: absolute;
+    content: attr(data-value);
+    font-size: 1rem;
+  }
+  
+  .card::before {
+    top: .5rem;
+    left: .5rem
+  }
+  
+  .card::after {
+    bottom: .5rem;
+    right: .5rem;
+    transform: rotate(180deg);
+  }
