@@ -9,6 +9,7 @@ deck.shuffle();
 
 console.log(deck.cards);
 var players = [];
+var pile = [];
 for (var i = 0; i < PLAYER_COUNT; i++) {
   players.push(new Player());
 }
@@ -19,6 +20,14 @@ function deal(cards = 1) {
   for (var i = 0; i < cards; i++) {
     current_player.draw(deck.draw());
   }
+}
+
+function checkPlayValid(card){
+  if (card.value > pile[pile.length - 1].value) return true;
+}
+
+function playCard(){
+  if (checkPlayValid(card)) pile.push(card);
 }
 
 function startGame() {
