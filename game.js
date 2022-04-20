@@ -40,8 +40,7 @@ function deal(cards = 1) {
 }
 
 function checkPlayValid(card){
-  if (card.value > pile[pile.length - 1].value) return true;
-  else return false;
+  return card.value > pile[pile.length - 1].value;
 }
 
 function playCard(card){
