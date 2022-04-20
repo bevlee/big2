@@ -1,18 +1,14 @@
 #board {
     margin: auto;
-    width: 70%;
+    width: 60%;
+    min-width: 1000px;
     border: 0.3rem solid #8b4513 ;
     border-radius: 1rem;
     padding: 1vh;
-    text-align: center;
     user-select: none;
-    background-color: green;
+    background-color: darkgreen;
 }
-#player2name {
-    color:green;
 
-    margin: 1rem;
-}
 .player {
     display:grid;
     height:10rem;
@@ -22,20 +18,28 @@
     padding-bottom: 2rem;
 }
 
-#player1name {
-    color: blue;
+#playername {
     margin: 1rem;
+    width: 50%;
+    text-align: left;
+}
+#username {
+    color: blue;
+}
+#computerName {
+    color: darkred;
 }
 
 #center {
     margin:1rem;
-    height:2rem;
+    height:5rem;
+    text-align: center;
 }
 .hand {
     display:inline-block;
     columns: 52;
     padding-left: 5rem;
-    width: 100%;
+    width: 50%;
 }
 
 .card {
@@ -52,4 +56,5 @@
 footer {
     position: relative;
     margin-top: 1rem;
+    text-align:center;
 }
