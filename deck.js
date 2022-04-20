@@ -47,24 +47,28 @@ class Card {
     return this.value.toString() + this.suit.toString();
   }
 
-  getHTML() {
+  getHTML(visible) {
     const cardDiv = document.createElement("div");
     var img = document.createElement("img");
-
-    img.setAttribute(
-      "src",
-      `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
-    );
 
     img.setAttribute("class", "card");
 
     cardDiv.appendChild(img);
 
-    img.onclick = () => {
-      !img.classList.contains("selectedCard")
-        ? img.classList.add("selectedCard")
-        : img.classList.remove("selectedCard");
-    };
+    if (visible) {
+      img.setAttribute(
+        "src",
+        `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
+      );
+      img.onclick = () => {
+        !img.classList.contains("selectedCard")
+          ? img.classList.add("selectedCard")
+          : img.classList.remove("selectedCard");
+      };
+    } else {
+      img.setAttribute("src", `./playing-cards-assets/png2/cardback.png`);
+    }
+
     return cardDiv;
   }
 }

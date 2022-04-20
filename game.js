@@ -80,7 +80,7 @@ function startGame() {
   player1.appendChild(handDiv1);
   handDiv1.setAttribute("class", "hand");
   for (var j = 0; j < players[0].hand.length; j++) {
-    handDiv1.appendChild(players[0].hand[j].getHTML());
+    handDiv1.appendChild(players[0].hand[j].getHTML(true));
   }
 
   var player2 = document.getElementById("player2");
@@ -88,7 +88,7 @@ function startGame() {
   handDiv2.setAttribute("class", "hand");
   player2.appendChild(handDiv2);
   for (var j = 0; j < players[1].hand.length; j++) {
-    handDiv2.appendChild(players[1].hand[j].getHTML());
+    handDiv2.appendChild(players[1].hand[j].getHTML(false));
   }
 }
 
