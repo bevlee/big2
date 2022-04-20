@@ -41,10 +41,12 @@ function deal(cards = 1) {
 
 function checkPlayValid(card){
   if (card.value > pile[pile.length - 1].value) return true;
+  else return false;
 }
 
-function playCard(){
+function playCard(card){
   if (checkPlayValid(card)) pile.push(card);
+  console.log(pile);
 }
 
 //process combos
