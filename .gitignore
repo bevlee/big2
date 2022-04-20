@@ -2,3 +2,5 @@
 .prettier*
 package*
 node_modules*
+
+*.svg

@@ -39,11 +39,11 @@ function deal(cards = 1) {
   }
 }
 
-function checkPlayValid(card){
+function checkPlayValid(card) {
   if (card.value > pile[pile.length - 1].value) return true;
 }
 
-function playCard(){
+function playCard() {
   if (checkPlayValid(card)) pile.push(card);
 }
 
@@ -52,16 +52,16 @@ var comboInstance = false;
 var comboType = "";
 var lastPlayed = [];
 
-function findCombo(cards){
+function findCombo(cards) {
   lastPlayed = cards;
   comboInstane = true;
-  if (cards.length == 4 && cards.every(i=>i==cards[0])){
+  if (cards.length == 4 && cards.every((i) => i == cards[0])) {
     return "bomb";
   }
-  if (cards.length == 3 && cards.every(i=>i==cards[0])){
+  if (cards.length == 3 && cards.every((i) => i == cards[0])) {
     return "triple";
   }
-  if (cards.length == 2 && cards.every(i=>i==cards[0])){
+  if (cards.length == 2 && cards.every((i) => i == cards[0])) {
     return "double";
   }
 }
@@ -75,14 +75,19 @@ function startGame() {
   }
   current_player = players[0];
   var player1 = document.getElementById("player1");
+  var handDiv1 = document.createElement("div");
+  player1.appendChild(handDiv1);
+  handDiv1.setAttribute("class", "hand");
   for (var j = 0; j < players[0].hand.length; j++) {
-    player1.appendChild(players[0].hand[j].getHTML());
+    handDiv1.appendChild(players[0].hand[j].getHTML());
   }
 
   var player2 = document.getElementById("player2");
-
-  for (var j = 0; j < players[0].hand.length; j++) {
-    player2.appendChild(players[1].hand[j].getHTML());
+  var handDiv2 = document.createElement("div");
+  handDiv2.setAttribute("class", "hand");
+  player2.appendChild(handDiv2);
+  for (var j = 0; j < players[1].hand.length; j++) {
+    handDiv2.appendChild(players[1].hand[j].getHTML());
   }
 }
 

@@ -1,65 +1,43 @@
 #board {
     margin: auto;
-    padding: 10vh;
+    padding: 1vh;
     text-align: center;
+    user-select: none;
 }
-#player2 {
+#player2name {
     color:green;
 
 }
 .player {
     margin: 5vh;
-    
-    columns: 52;
-    display: inline-block;
+    display:grid;
     height:20vh;
 }
 
-#player1 {
+#player1name {
     color: blue;
-    columns: 52;
-    display: inline-block;
-    
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 #center {
     padding: 10vh;
 }
+.hand {
+    display:inline-block;
+    columns: 52;
+    padding: 0;
+    padding-left: -5rem;
+}
 
 .card {
-    width: 4rem;
-    position: relative;
-    border: 1px solid black;
-    border-radius: .5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    padding: .5rem;
-  }
-  
-  .card.red {
-    color: red;
-  }
-  
-  .card.black {
-    color: black;
-  }
-  
-  .card::before,
-  .card::after {
-    position: absolute;
-    content: attr(data-value);
-    font-size: 1rem;
-  }
-  
-  .card::before {
-    top: .5rem;
-    left: .5rem
-  }
-  
-  .card::after {
-    bottom: .5rem;
-    right: .5rem;
-    transform: rotate(180deg);
-  }
+    margin-top: 2rem;
+    height: 7rem;
+    width: 5rem;
+    margin-left: -80px;
+}
+
+.selectedCard {
+    margin-top: 0;
+}

@@ -1,4 +1,4 @@
-const SUITS = ["♠", "♣", "♥", "♦"];
+const SUITS = ["spade", "club", "heart", "diamond"];
 const VALUES = [
   "3",
   "4",
@@ -8,10 +8,10 @@ const VALUES = [
   "8",
   "9",
   "10",
-  "J",
-  "Q",
-  "K",
-  "A",
+  "Jack",
+  "Queen",
+  "King",
+  "Ace",
   "2",
 ];
 
@@ -47,15 +47,24 @@ class Card {
     return this.value.toString() + this.suit.toString();
   }
 
-  get color() {
-    return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
-  }
-
   getHTML() {
     const cardDiv = document.createElement("div");
-    cardDiv.innerText = this.suit;
-    cardDiv.classList.add("card", this.color);
-    cardDiv.dataset.value = `${this.value} ${this.suit}`;
+    var img = document.createElement("img");
+
+    img.setAttribute(
+      "src",
+      `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
+    );
+
+    img.setAttribute("class", "card");
+
+    cardDiv.appendChild(img);
+
+    img.onclick = () => {
+      !img.classList.contains("selectedCard")
+        ? img.classList.add("selectedCard")
+        : img.classList.remove("selectedCard");
+    };
     return cardDiv;
   }
 }
