@@ -19,6 +19,7 @@ const CARD_VALUE_MAP = {
 
 const PLAYER_COUNT = 2;
 const deck = new Deck();
+const selection = new Set();
 console.log(deck.cards);
 
 deck.shuffle();
@@ -48,6 +49,16 @@ function playCard(card) {
   console.log(pile);
 }
 
+function toggleSelection(card) {
+  if (selection.has(card)) {
+    selection.delete(card);
+  } else {
+    selection.add(card);
+  }
+}
+
+function playSelection() {}
+function endTurn() {}
 //process combos
 var comboInstance = false;
 var comboType = "";
@@ -80,7 +91,7 @@ function startGame() {
   player1.appendChild(handDiv1);
   handDiv1.setAttribute("class", "hand");
   for (var j = 0; j < players[0].hand.length; j++) {
-    handDiv1.appendChild(players[0].hand[j].getHTML(true));
+    handDiv1.appendChild(players[0].hand[j].getHTML(true, toggleSelection));
   }
 
   var player2 = document.getElementById("player2");
@@ -88,8 +99,16 @@ function startGame() {
   handDiv2.setAttribute("class", "hand");
   player2.appendChild(handDiv2);
   for (var j = 0; j < players[1].hand.length; j++) {
-    handDiv2.appendChild(players[1].hand[j].getHTML(false));
+    handDiv2.appendChild(players[1].hand[j].getHTML(false, toggleSelection));
   }
+
+  var cards = document.getElementsByClassName("playableCard");
+  for (var card of cards) {
+  }
+  var playButton = document.getElementById("playButton");
+  playButton.setAttribute("click", playSelection());
+  var passButton = document.getElementById("passButton");
+  passButton.setAttribute("click", endTurn());
 }
 
 startGame();

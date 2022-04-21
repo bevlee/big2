@@ -47,7 +47,7 @@ class Card {
     return this.value.toString() + this.suit.toString();
   }
 
-  getHTML(visible) {
+  getHTML(visible, toggleSelection) {
     const cardDiv = document.createElement("div");
     var img = document.createElement("img");
 
@@ -61,14 +61,19 @@ class Card {
         `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
       );
       img.onclick = () => {
-        !img.classList.contains("selectedCard")
-          ? img.classList.add("selectedCard")
-          : img.classList.remove("selectedCard");
+        if (!img.classList.contains("selectedCard")) {
+          img.classList.add("selectedCard");
+        } else {
+          img.classList.remove("selectedCard");
+        }
+        toggleSelection(this);
+        console.log(this);
       };
+      img.classList.add("playableCard");
     } else {
       img.setAttribute("src", `./playing-cards-assets/png2/cardback.png`);
     }
-
+    this.html = img;
     return cardDiv;
   }
 }
