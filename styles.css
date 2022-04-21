@@ -29,7 +29,9 @@
 #computerName {
     color: darkred;
 }
-
+#actions {
+    width: 100%;
+}
 #center {
     margin:1rem;
     height:5rem;
