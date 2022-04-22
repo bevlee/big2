@@ -79,6 +79,7 @@ function playCard(card) {
 }
 
 function toggleSelection(cardDiv, card) {
+  console.log(cardDiv, card);
   if (cardDiv.classList.contains("selectedCard") && selection.has(card)) {
     cardDiv.classList.remove("selectedCard");
     selection.delete(card);
@@ -123,9 +124,10 @@ function startGame() {
   player1.appendChild(handDiv1);
   handDiv1.classList.add("hand");
   for (var j = 0; j < players[0].hand.length; j++) {
-    let cardDiv = players[0].hand[j].getHTMLObject();
+    let card = players[0].hand[j];
+    let cardDiv = card.getHTMLObject();
     cardDiv.onclick = () => {
-      toggleSelection(cardDiv, players[0].hand[j]);
+      toggleSelection(cardDiv, card);
     };
     handDiv1.appendChild(cardDiv);
   }
@@ -136,9 +138,10 @@ function startGame() {
   player2.appendChild(handDiv2);
   handDiv2.classList.add("hand");
   for (var j = 0; j < players[1].hand.length; j++) {
-    let cardDiv = players[1].hand[j].getHTMLObject();
+    let card = players[1].hand[j];
+    let cardDiv = card.getHTMLObject();
     cardDiv.onclick = () => {
-      toggleSelection(cardDiv, players[1].hand[j]);
+      toggleSelection(cardDiv, card);
     };
     handDiv2.appendChild(cardDiv);
   }
