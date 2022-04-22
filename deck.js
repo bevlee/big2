@@ -38,23 +38,11 @@ export default class Deck {
 }
 
 class Card {
-  constructor(suit, value) {
+  constructor(suit, value, visible) {
     this.suit = suit;
     this.value = value;
-  }
-
-  toString() {
-    return this.value.toString() + this.suit.toString();
-  }
-
-  getHTML(visible, toggleSelection) {
     const cardDiv = document.createElement("div");
     var img = document.createElement("img");
-
-    img.setAttribute("class", "card");
-
-    cardDiv.appendChild(img);
-
     if (visible) {
       img.setAttribute(
         "src",
@@ -66,14 +54,20 @@ class Card {
         } else {
           img.classList.remove("selectedCard");
         }
-        toggleSelection(this);
       };
       img.classList.add("playableCard");
     } else {
       img.setAttribute("src", `./playing-cards-assets/png2/cardback.png`);
     }
-    this.html = img;
-    return cardDiv;
+    this.container = cardDiv;
+  }
+
+  toString() {
+    return this.value.toString() + this.suit.toString();
+  }
+
+  getHTMLObject() {
+    return this.container;
   }
 }
 
@@ -81,7 +75,7 @@ class Card {
 function newDeck(cards) {
   return SUITS.flatMap((suit) => {
     return VALUES.map((value) => {
-      return new Card(suit, value);
+      return new Card(suit, value, false);
     });
   });
 }
