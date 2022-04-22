@@ -32,33 +32,29 @@ for (var i = 0; i < PLAYER_COUNT; i++) {
   players.push(new Player());
 }
 
-var current_player = players[0];
+var current_player = 0;
 
 function deal(cards = 1) {
   for (var i = 0; i < cards; i++) {
-    current_player.draw(deck.draw());
+    players[current_player].draw(deck.draw());
   }
 }
 
 function checkPlayValid(card) {
-  return card.value > pile[pile.length - 1].value;
-}
-
-function playCard(card) {
-  if (checkPlayValid(card)) pile.push(card);
-  console.log(pile);
-}
-
-function toggleSelection(card) {
-  if (selection.has(card)) {
-    selection.delete(card);
+  if (pile.length == 0) {
+    return true;
   } else {
-    selection.add(card);
+    return card.value > pile[pile.length - 1].value;
   }
 }
 
-function playSelection() {}
-function endTurn() {}
+function endTurn() {
+  console.log("ending turn");
+  lastPlayed = [];
+  pile = [];
+  current_player = (current_player + 1) % PLAYER_COUNT;
+}
+
 //process combos
 var comboInstance = false;
 var comboType = "";
@@ -77,15 +73,49 @@ function findCombo(cards) {
     return "double";
   }
 }
+function playCard(card) {
+  if (checkPlayValid(card)) pile.push(card);
+  console.log(pile);
+}
+
+function toggleSelection(card) {
+  if (selection.has(card)) {
+    selection.delete(card);
+  } else {
+    selection.add(card);
+  }
+}
+
+function playSelection() {
+  console.log("playing");
+  var selectedCards = [...selection];
+  console.log("selectedCards: " + selectedCards);
+  if (selection.size == 1 && checkPlayValid(selectedCards[0])) {
+    for (var j = 0; j < selectedCards; j++) {
+      for (var i = 0; i < players[0].hand.length; i++) {
+        if (players[0].hand[i] == selectedCards[j]) {
+          //remove card from hand if it is valid
+          players[0].hand.splice(i, 1);
+          playCard(selectedCards[j]);
+        }
+      }
+    }
+    lastPlayed = selectedCards;
+
+    current_player = (current_player + 1) % PLAYER_COUNT;
+  } else {
+    alert("Please select a valid card to play");
+  }
+}
 
 function startGame() {
   //deal deck to players evenly
   let i = 0;
   while (!deck.isEmpty()) {
-    current_player = players[i++ % PLAYER_COUNT];
+    players[current_player] = players[i++ % PLAYER_COUNT];
     deal(1);
   }
-  current_player = players[0];
+  players[current_player] = players[0];
   var player1 = document.getElementById("player1");
   var handDiv1 = document.createElement("div");
   player1.appendChild(handDiv1);
@@ -102,13 +132,10 @@ function startGame() {
     handDiv2.appendChild(players[1].hand[j].getHTML(false, toggleSelection));
   }
 
-  var cards = document.getElementsByClassName("playableCard");
-  for (var card of cards) {
-  }
   var playButton = document.getElementById("playButton");
-  playButton.setAttribute("click", playSelection());
+  playButton.onclick = playSelection;
   var passButton = document.getElementById("passButton");
-  passButton.setAttribute("click", endTurn());
+  passButton.onclick = endTurn;
 }
 
 startGame();

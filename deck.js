@@ -67,7 +67,6 @@ class Card {
           img.classList.remove("selectedCard");
         }
         toggleSelection(this);
-        console.log(this);
       };
       img.classList.add("playableCard");
     } else {
