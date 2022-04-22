@@ -10,10 +10,10 @@ const CARD_VALUE_MAP = {
   8: 5,
   9: 6,
   10: 7,
-  J: 8,
-  Q: 9,
-  K: 10,
-  A: 11,
+  Jack: 8,
+  Queen: 9,
+  King: 10,
+  Ace: 11,
   2: 12,
 };
 
@@ -44,7 +44,10 @@ function checkPlayValid(card) {
   if (pile.length == 0) {
     return true;
   } else {
-    return card.value > pile[pile.length - 1].value;
+    console.log(pile[pile.length - 1].value + "vs current card: " + card.value);
+    return (
+      CARD_VALUE_MAP[card.value] > CARD_VALUE_MAP[pile[pile.length - 1].value]
+    );
   }
 }
 
@@ -79,7 +82,6 @@ function playCard(card) {
 }
 
 function toggleSelection(cardDiv, card) {
-  console.log(cardDiv, card);
   if (cardDiv.classList.contains("selectedCard") && selection.has(card)) {
     cardDiv.classList.remove("selectedCard");
     selection.delete(card);
@@ -90,22 +92,23 @@ function toggleSelection(cardDiv, card) {
 }
 
 function playSelection() {
-  console.log("playing");
   var selectedCards = [...selection];
-  console.log("selectedCards: " + selectedCards);
   if (selection.size == 1 && checkPlayValid(selectedCards[0])) {
-    for (var j = 0; j < selectedCards; j++) {
+    for (var j = 0; j < selectedCards.length; j++) {
       for (var i = 0; i < players[0].hand.length; i++) {
         if (players[0].hand[i] == selectedCards[j]) {
           //remove card from hand if it is valid
+          players[0].hand[i].getHTMLObject().remove();
           players[0].hand.splice(i, 1);
           playCard(selectedCards[j]);
+
+          lastPlayed = selectedCards;
+          selection.clear();
+          current_player = (current_player + 1) % PLAYER_COUNT;
+          return;
         }
       }
     }
-    lastPlayed = selectedCards;
-
-    current_player = (current_player + 1) % PLAYER_COUNT;
   } else {
     alert("Please select a valid card to play");
   }
@@ -132,7 +135,7 @@ function startGame() {
     handDiv1.appendChild(cardDiv);
   }
 
-  var player2 = document.getElementById("player2");
+  var player2 = document.getElementById("computerName");
   var handDiv2 = document.createElement("div");
 
   player2.appendChild(handDiv2);

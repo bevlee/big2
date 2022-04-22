@@ -4,7 +4,6 @@
     min-width: 1000px;
     border: 0.3rem solid #8b4513 ;
     border-radius: 1rem;
-    padding: 1vh;
     user-select: none;
     background-color: darkgreen;
 }
@@ -12,14 +11,13 @@
 .player {
     display:grid;
     height:10rem;
-    margin: 1rem;
     margin-left: 5rem;
-    padding-left: 50px;
+    padding-left: 1rem;
     padding-bottom: 2rem;
 }
 
-#playername {
-    margin: 1rem;
+.playername {
+    font-size: large;
     width: 50%;
     text-align: left;
 }
@@ -29,11 +27,15 @@
 #computerName {
     color: darkred;
 }
-#actions {
+.actions {
     width: 100%;
+}
+.playArea {
+    align-items: center;
 }
 #center {
     margin:1rem;
+    
     height:5rem;
     text-align: center;
 }
