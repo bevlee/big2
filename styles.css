@@ -38,13 +38,13 @@
     text-align: center;
 }
 .hand {
-    display:inline-block;
     columns: 52;
     padding-left: 5rem;
     width: 50%;
 }
 
 .card {
+    display:inline-block;
     margin-top: 2rem;
     height: 7rem;
     width: 5rem;
@@ -59,4 +59,8 @@ footer {
     position: relative;
     margin-top: 1rem;
     text-align:center;
+}
+img {
+    width: 100%;
+    height: 100%;
 }

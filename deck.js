@@ -38,27 +38,19 @@ export default class Deck {
 }
 
 class Card {
-  constructor(suit, value, visible) {
+  constructor(suit, value) {
     this.suit = suit;
     this.value = value;
     const cardDiv = document.createElement("div");
     var img = document.createElement("img");
-    if (visible) {
-      img.setAttribute(
-        "src",
-        `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
-      );
-      img.onclick = () => {
-        if (!img.classList.contains("selectedCard")) {
-          img.classList.add("selectedCard");
-        } else {
-          img.classList.remove("selectedCard");
-        }
-      };
-      img.classList.add("playableCard");
-    } else {
-      img.setAttribute("src", `./playing-cards-assets/png2/cardback.png`);
-    }
+    img.setAttribute(
+      "src",
+      `./playing-cards-assets/png2/${this.value}_of_${this.suit}s.png`
+    );
+    cardDiv.appendChild(img);
+
+    cardDiv.classList.add("playableCard", "card");
+
     this.container = cardDiv;
   }
 

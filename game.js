@@ -78,10 +78,12 @@ function playCard(card) {
   console.log(pile);
 }
 
-function toggleSelection(card) {
-  if (selection.has(card)) {
+function toggleSelection(cardDiv, card) {
+  if (cardDiv.classList.contains("selectedCard") && selection.has(card)) {
+    cardDiv.classList.remove("selectedCard");
     selection.delete(card);
   } else {
+    cardDiv.classList.add("selectedCard");
     selection.add(card);
   }
 }
@@ -112,24 +114,33 @@ function startGame() {
   //deal deck to players evenly
   let i = 0;
   while (!deck.isEmpty()) {
-    players[current_player] = players[i++ % PLAYER_COUNT];
+    current_player = i++ % PLAYER_COUNT;
     deal(1);
   }
-  players[current_player] = players[0];
+
   var player1 = document.getElementById("player1");
   var handDiv1 = document.createElement("div");
   player1.appendChild(handDiv1);
-  handDiv1.setAttribute("class", "hand");
+  handDiv1.classList.add("hand");
   for (var j = 0; j < players[0].hand.length; j++) {
-    handDiv1.appendChild(players[0].hand[j].getHTML(true, toggleSelection));
+    let cardDiv = players[0].hand[j].getHTMLObject();
+    cardDiv.onclick = () => {
+      toggleSelection(cardDiv, players[0].hand[j]);
+    };
+    handDiv1.appendChild(cardDiv);
   }
 
   var player2 = document.getElementById("player2");
   var handDiv2 = document.createElement("div");
-  handDiv2.setAttribute("class", "hand");
+
   player2.appendChild(handDiv2);
+  handDiv2.classList.add("hand");
   for (var j = 0; j < players[1].hand.length; j++) {
-    handDiv2.appendChild(players[1].hand[j].getHTML(false, toggleSelection));
+    let cardDiv = players[1].hand[j].getHTMLObject();
+    cardDiv.onclick = () => {
+      toggleSelection(cardDiv, players[1].hand[j]);
+    };
+    handDiv2.appendChild(cardDiv);
   }
 
   var playButton = document.getElementById("playButton");
