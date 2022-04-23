@@ -1,14 +1,25 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+*/
+
 #board {
     margin: auto;
     width: 60%;
     min-width: 1000px;
     border: 0.3rem solid #8b4513 ;
     border-radius: 1rem;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
     background-color: darkgreen;
 }
 
 .player {
+    display:-ms-grid;
     display:grid;
     height:10rem;
     margin-left: 5rem;
@@ -31,7 +42,9 @@
     width: 100%;
 }
 .playArea {
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 #center {
     margin:1rem;
@@ -40,7 +53,9 @@
     text-align: center;
 }
 .hand {
-    columns: 52;
+    -webkit-columns: 52;
+       -moz-columns: 52;
+            columns: 52;
     padding-left: 5rem;
     width: 50%;
 }
