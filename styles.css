@@ -9,6 +9,7 @@
     margin: auto;
     width: 60%;
     min-width: 1000px;
+    height:1000px;
     border: 0.3rem solid #8b4513 ;
     border-radius: 1rem;
     -webkit-user-select: none;
@@ -45,6 +46,9 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+            height:50px;
+            max-height:100%; 
+            max-width:100%;
 }
 #center {
     margin:1rem;

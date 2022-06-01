@@ -55,6 +55,7 @@ function endTurn() {
   console.log("ending turn");
   lastPlayed = [];
   pile = [];
+  player1PlayArea.innerHTML = "";
   current_player = (current_player + 1) % PLAYER_COUNT;
 }
 
@@ -78,6 +79,10 @@ function findCombo(cards) {
 }
 function playCard(card) {
   if (checkPlayValid(card)) pile.push(card);
+  console.log(card);
+
+  player1PlayArea.innerHTML = "";
+  player1PlayArea.appendChild(card.getHTMLObject());
   console.log(pile);
 }
 
@@ -90,6 +95,11 @@ function toggleSelection(cardDiv, card) {
     selection.add(card);
   }
 }
+function updatePlayArea(selectedCards) {
+  // if (!lastPlayed.isEmpty) {
+  // }
+  // lastPlayed = selectedCards;
+}
 
 function playSelection() {
   var selectedCards = [...selection];
@@ -101,8 +111,7 @@ function playSelection() {
           players[0].hand[i].getHTMLObject().remove();
           players[0].hand.splice(i, 1);
           playCard(selectedCards[j]);
-
-          lastPlayed = selectedCards;
+          updatePlayArea();
           selection.clear();
           current_player = (current_player + 1) % PLAYER_COUNT;
           return;
@@ -153,6 +162,7 @@ function startGame() {
   playButton.onclick = playSelection;
   var passButton = document.getElementById("passButton");
   passButton.onclick = endTurn;
+  var player1PlayArea = document.getElementById("player1PlayArea");
 }
 
 startGame();
